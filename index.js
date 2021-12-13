@@ -86,7 +86,7 @@ function bindEvents(bot) {
 		setTimeout(sendConnectedMessage, 5000);
 		setTimeout(setPlayerCount, 300000);
 		setTimeout(setTPS, 300000);
-	}
+	});
 
 	bot.on('message', (jsonMsg, position) => {
 	var date = new Date();
@@ -113,7 +113,6 @@ function bindEvents(bot) {
 			console.log("Cannot send messages to SKYNET channel! Fix please");
 			return;
 		});
-		channel.setTopic('Players logged in: ' + bot.players.size);
 	});
 
 	bot.on('playerLeft', (player) => {
@@ -122,7 +121,6 @@ function bindEvents(bot) {
 			console.log("Cannot send messages to SKYNET channel! Fix please");
 			return;
 		});
-		channel.setTopic('Players logged in: ' + bot.players.size);
 	});
 
 	bot.on('end', function() {
