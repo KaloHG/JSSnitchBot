@@ -3,6 +3,7 @@ const { MessageEmbed } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const mineflayer = require('mineflayer');
+const tpsPlug = require('mineflayer-tps')(mineflayer);	
 
 const ip = "mc.civserver.xyz"; //Server IP
 const snitchChannel = ""; //Discord Channel ID for the Snitch Channel (http://img.kayla.moe/Discord_2z7NFHdNJw.png)
@@ -44,6 +45,12 @@ function setPlayerCount() {
 	setTimeout(300000, setPlayerCount);
 }
 
+function setTPS() {
+	const channel = client.channels.cache.get(globalChannel);
+	channel.setTopic('Server TPS: ' + bot.getTps());
+	setTimeout(300000, setTPS);
+}
+
 async function sendSnitchMessage(msg) {
 	const channel = client.channels.cache.get(snitchChannel);
 	channel.send(msg).catch(console.error, () => {
@@ -78,6 +85,7 @@ function bindEvents(bot) {
 	bot.on('spawn', () => {
 		setTimeout(sendConnectedMessage, 5000);
 		setTimeout(setPlayerCount, 300000);
+		setTimeout(setTPS, 300000);
 	}
 
 	bot.on('message', (jsonMsg, position) => {
