@@ -7,3 +7,6 @@ installed, make sure to install the "Current" version at https://nodejs.org/en/ 
 
 Once done fill out all of the respective lines such as the bot token and mc username/email and pass in the index.js file. Finally, run "node index.js" in your command
 line within the folder that contains index.js for this file. Happy snitching!
+
+### To-Do
+Hoping to add in a way to track and store users with the bot.
