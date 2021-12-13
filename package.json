@@ -1,0 +1,16 @@
+{
+  "name": "jssnitchbot",
+  "version": "1.0.0",
+  "description": "A snitch bot for Civ Servers above the version 1.14",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Laika#0731",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.3.1",
+    "mineflayer": "^3.11.2",
+    "node": "^17.2.0"
+  }
+}
