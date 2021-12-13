@@ -38,7 +38,11 @@ client.on('ready', () => {
 	sendSnitchMessage('**Initializing...**');
 });
 
-
+function setPlayerCount() {
+	const channel = client.channels.cache.get(skynetChannel);
+	channel.setTopic('Players logged in ' + Object.keys(bot.players).length);
+	setTimeout(300000, setPlayerCount);
+}
 
 async function sendSnitchMessage(msg) {
 	const channel = client.channels.cache.get(snitchChannel);
@@ -56,22 +60,10 @@ async function sendChatMessage(msg) {
 
 client.login(token);
 
-const bot = mineflayer.createBot(options);
+var bot = mineflayer.createBot(options);
 bindEvents(bot);
 
-function bindEvents(bot) {
-	bot.on('spawn', () => {
-	if(bot.player.displayName == undefined) {
-		console.log('Failed to retrieve username, combatlogged i think.')
-		const loginSmall = new MessageEmbed()
-			.setColor('#bd6ce2')
-			.setTitle('Logged In')
-			.addField('Connected to ' + ip, '')
-			.setTimestamp()
-			.setFooter('Created by Laika');
-		sendSnitchMessage({embeds: [loginSmall]});
-		return;
-	}
+function sendConnectedMessage() {
 	const username = bot.player.displayName;
 	const loginMsg = new MessageEmbed()
 			.setColor('#bd6ce2')
@@ -80,7 +72,13 @@ function bindEvents(bot) {
 			.setTimestamp()
 			.setFooter('Created by Laika');
 	sendSnitchMessage({embeds: [loginMsg]});
-	});
+}
+
+function bindEvents(bot) {
+	bot.on('spawn', () => {
+		setTimeout(sendConnectedMessage, 5000);
+		setTimeout(setPlayerCount, 300000);
+	}
 
 	bot.on('message', (jsonMsg, position) => {
 	var date = new Date();
