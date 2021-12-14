@@ -42,13 +42,13 @@ client.on('ready', () => {
 function setPlayerCount() {
 	const channel = client.channels.cache.get(skynetChannel);
 	channel.setTopic('Players logged in ' + Object.keys(bot.players).length);
-	setTimeout(300000, setPlayerCount);
+	setTimeout(setPlayerCount, 600000);
 }
 
 function setTPS() {
 	const channel = client.channels.cache.get(globalChannel);
 	channel.setTopic('Server TPS: ' + bot.getTps());
-	setTimeout(300000, setTPS);
+	setTimeout(setTPS, 600000);
 }
 
 async function sendSnitchMessage(msg) {
@@ -68,6 +68,7 @@ async function sendChatMessage(msg) {
 client.login(token);
 
 var bot = mineflayer.createBot(options);
+bot.loadPlugin(tpsPlug);
 bindEvents(bot);
 
 function sendConnectedMessage() {
@@ -133,5 +134,6 @@ function bindEvents(bot) {
 function relog() {
 	console.log("Attempting to reconnect...");
     bot = mineflayer.createBot(options);
+    bot.loadPlugin(tpsPlug);		
     bindEvents(bot);
 }
