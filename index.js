@@ -12,7 +12,7 @@ const skynetChannel = ""; //Join and leave channel
 const token = "token"; //Make an application on Discord and copy the bot token (https://canary.discord.com/developers/applications)
 
 //Do nto touch
-const snitchReg = /^(Login|Enter|Logout|Leave)  ([A-Za-z0-9_]{2,16})  (\S*)  \[(-?[0-9]+) (-?[0-9]+) (-?[0-9]+)\]  \[([0-9]+)m ((?:North|South|East|West)(?: North| South| East| West)?)\]/
+const snitchReg = /^(Login|Enter|Logout|Leave)  ([A-Za-z0-9_]{2,16})  (\S*)  \[(\S*\s)?(-?[0-9]+) (-?[0-9]+) (-?[0-9]+)\](?:  \[([0-9]+)m ((?:North|South|East|West)(?: North| South| East| West)?)\])?/
 
 const globalReg = /\[([\S]+)\] ([\S:]+) (.+)$/
 
@@ -30,7 +30,7 @@ var options = {
 }
 
 console.log(regResult);
-console.log('Type: ' + regResult[1] + '\nPlayer: ' + regResult[2] + '\nName: ' + regResult[3] + '\nX: ' + regResult[4] + '\nY: ' + regResult[5] + '\nZ: ' + regResult[6] + '\nDistance: ' + regResult[7] + '\nDirection: ' + regResult[8]);
+console.log('Type: ' + regResult[1] + '\nPlayer: ' + regResult[2] + '\nName: ' + regResult[3] + '\nX: ' + regResult[5] + '\nY: ' + regResult[6] + '\nZ: ' + regResult[7] + '\nDistance: ' + regResult[8] + '\nDirection: ' + regResult[9]);
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}.`);
