@@ -95,9 +95,16 @@ function bindEvents(bot) {
 		var pr = snitchReg.exec(jsonMsg);
 		//"`" + now.format(dateFormat) + "` ***" + group + "*** **" + playerName + "**   `" + activity + " " + snitchName + "`   [" + x + ", " + y
         //        + ", " + z + "]";
+        //Check to see if the snitch message is from current or other world
+        if(pr[4] == undefined) {
 		sendSnitchMessage('`' + date.getUTCHours() + ':' + date.getUTCMinutes() + ':' + date.getUTCSeconds() 
-			+ '` **' + pr[2] + '** `' + pr[1] + ' ' + pr[3] + '`  [' + pr[4] + ', ' + pr[5]  + ', ' + pr[6] + ']'
+			+ '` **' + pr[2] + '** `' + pr[1] + ' ' + pr[3] + '`  [' + pr[5] + ', ' + pr[6]  + ', ' + pr[7] + ']'
 			);
+		} else {
+			sendSnitchMessage('`' + date.getUTCHours() + ':' + date.getUTCMinutes() + ':' + date.getUTCSeconds() 
+			+ '` **' + pr[2] + '** `' + pr[1] + ' ' + pr[3] + '`  ['+ pr[4] + ', ' + pr[5] + ', ' + pr[6]  + ', ' + pr[7] + ']'
+			);
+		}
 	} else if(globalReg.test(jsonMsg)) {
 		var gc = globalReg.exec(jsonMsg);
 		if(gc[1] == "!") {
