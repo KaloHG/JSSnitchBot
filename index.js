@@ -41,7 +41,7 @@ client.on('ready', () => {
 
 function setPlayerCount() {
 	const channel = client.channels.cache.get(skynetChannel);
-	channel.setTopic('Players logged in ' + Object.keys(bot.players).length);
+	channel.setTopic('Players logged in: ' + Object.keys(bot.players).length);
 	setTimeout(setPlayerCount, 600000);
 }
 
@@ -85,8 +85,8 @@ function sendConnectedMessage() {
 function bindEvents(bot) {
 	bot.on('spawn', () => {
 		setTimeout(sendConnectedMessage, 5000);
-		setTimeout(setPlayerCount, 300000);
-		setTimeout(setTPS, 300000);
+		setTimeout(setPlayerCount, 10000);
+		setTimeout(setTPS, 15000);
 	});
 
 	bot.on('message', (jsonMsg, position) => {
